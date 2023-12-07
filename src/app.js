@@ -1,5 +1,5 @@
 const express = require("express");
-const {putMovieById, putUserById} = require("../src/controllers/controllerputdelete");
+const {putMovieById, putUserById,deleteMovieById, deleteUsersById} = require("../src/controllers/controllerputdelete");
 const app = express();
 app.use(express.json()); 
 
@@ -13,4 +13,6 @@ app.post("/api/movies", movieControllers.postMovies);
 app.post("/api/users", movieControllers.postUsers);
 app.put("/api/movies/:id", putMovieById);
 app.put("/api/users/:id", putUserById);
+app.delete("/api/movies/:id", deleteMovieById);
+app.delete("/api/users/:id", deleteUsersById);
 module.exports = app;

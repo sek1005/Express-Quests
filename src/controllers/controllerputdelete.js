@@ -30,5 +30,38 @@ const putMovieById = async (req, res) => {
       res.sendStatus(500);
     }
   };
-  module.exports = { putMovieById,putUserById
+  const deleteMovieById = async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const [result] = await database.query(
+        "DELETE from movies where id = ?",
+        [id]
+      );
+    //   console.log(result);
+      if (result.affectedRows === 0)
+       res.sendStatus(404);
+      else res.sendStatus(204);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(500);
+    }
+  };
+  const deleteUsersById = async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const [result] = await database.query(
+        "DELETE from users where id = ?",
+        [id]
+      );
+    //   console.log(result);
+      if (result.affectedRows === 0)
+       res.sendStatus(404);
+      else res.sendStatus(204);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(500);
+    }
+  };
+
+  module.exports = { putMovieById,putUserById, deleteMovieById, deleteUsersById
 }
